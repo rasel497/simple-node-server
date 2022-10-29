@@ -18,6 +18,16 @@ const users = [
 ];
 
 app.get('/users', (req, res) => {
+    if (req.query.name) {
+        // filter users the query
+        const search = req.query.name;
+        const filtered = users.filter(usr => usr.name.toLowerCase().contain.indexOf(search) >= 0);
+        res.send(filtered);
+    }
+    else {
+        res.send(users);
+    }
+
     res.send(users);
 })
 
