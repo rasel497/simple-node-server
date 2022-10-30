@@ -9,3 +9,12 @@ POST
 
 
 */
+
+/*
+1. sign up mongoDB atlas
+2. dba user
+3. whitelist your ip address
+4. // MongoDB >Database>Connect>Select Application>Check Mark>copy>finally past server side [index.js] file any where 
+5. npm install mongodb //[can not find module mongoDB]
+
+*/
