@@ -22,16 +22,22 @@ const users = [
 // username: dbUser1
 // password: mkn1ktJpKFQgUUDY
 
-// MongoDB >Database>Connect>Mark>copy>finally past here
+// MongoDB >Database>Connect>Connect To application>Mark>copy>finally past here
 const uri = "mongodb+srv://dbUser1:mkn1ktJpKFQgUUDY@cluster0.mpr3cem.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-    const collection = client.db("simpleNode").collection("users");
-    // perform actions on the collection object
-    // now check connect in cosole.log
-    console.log('MongoDB database connected');
-    client.close();
-});
+// from node mongodb CRUD
+async function run() {
+    try {
+        const userCollection = client.db('simpleNode').collection('users');
+        const user = { name: 'Cahiya mahi', email: 'cahi@gmail.com' }
+        const result = await userCollection.insertOne(user);
+        console.log(result);
+    }
+    finally {
+
+    }
+}
+run().catch(err => console.log(err));
 
 
 
