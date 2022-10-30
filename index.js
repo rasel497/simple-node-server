@@ -30,8 +30,17 @@ async function run() {
     try {
         const userCollection = client.db('simpleNode').collection('users');
         const user = { name: 'Cahiya mahi', email: 'cahi@gmail.com' }
-        const result = await userCollection.insertOne(user);
-        console.log(result);
+        // const result = await userCollection.insertOne(user);
+        // console.log(result);
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+
+            // users.push(user);
+            const result = await userCollection.insertOne(user);
+            console.log(result);
+            user.id = result.insertedId;
+            res.send(user);
+        })
     }
     finally {
 
@@ -56,14 +65,14 @@ app.get('/users', (req, res) => {
 })
 
 // create POST api called
-app.post('/users', (req, res) => {
-    console.log('Post API called');
-    const user = req.body;
-    user.id = users.length + 1;
-    users.push(user);
-    console.log(user);
-    res.send(user);
-})
+// app.post('/users', (req, res) => {
+//     console.log('Post API called');
+//     const user = req.body;
+//     user.id = users.length + 1;
+//     users.push(user);
+//     console.log(user);
+//     res.send(user);
+// })
 
 
 app.listen(port, () => {
